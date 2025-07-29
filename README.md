@@ -11,18 +11,18 @@ Clone the repo into your project. It should be stored in a directory called `qua
 import qt "quadtree"
 
 main :: proc() {
-	qt := qt.new_quadtree(Rect{Point{0, 0}, Point{1920, 1080}}) // Allocated on the heap
-	defer qt.free_quadtree(qt)
+	tree := qt.new_quadtree(Rect{Point{0, 0}, Point{1920, 1080}}) // Allocated on the heap
+	defer qt.free_quadtree(tree)
 
-	qt.insert(qt, Point{20, 20})
-	qt.insert(qt, Point{40, 40})
-	qt.insert(qt, Point{60, 60})
-	qt.insert(qt, Point{80, 80})
-	qt.insert(qt, Point{100, 00})
+	qt.insert(tree, Point{20, 20})
+	qt.insert(tree, Point{40, 40})
+	qt.insert(tree, Point{60, 60})
+	qt.insert(tree, Point{80, 80})
+	qt.insert(tree, Point{100, 00})
 
 	// `points` should have three points: (20 20), (40 40), and (60 60).
 	// `points` also needs to be deallocated too.
-	points := qt.query_range(qt, Rect{{0, 0}, {60, 60}})
+	points := qt.query_range(tree, Rect{{0, 0}, {60, 60}})
 	defer delete(points)
 
 	// Rest of code....
